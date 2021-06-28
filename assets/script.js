@@ -12,31 +12,55 @@ let choiceC = document.getElementById("C");
 let choiceD = document.getElementById("D");
 let timeLeft = document.querySelector("#timeLeft");
 
-//array of questions
-var qList = [
-  {
-    question: "What does HTML stand for?",
-    answer: "B",
-    choiceA: "A) Hyper Text Markdown Language",
-    choiceB: "B) Hyper Text Markup Language",
-    choiceC: "C) Hyper Text Memory Language",
-    choiceD: "D) Hyper Tool Multiple Language"
-  },
-  {
-    question: "What does CSS stand for?",
-    answer: "D",
-    choiceA: "A) Common Style Sheet",
-    choiceB: "B) Calculated Style Sheet",
-    choiceC: "C) Computer Style Sheet",
-    choiceD: "D) Cascading Style Sheet"
-  },
-];
+//variable defined for starting number seconds for the quiz
+let secondsLeft = 100;
 
 //variable defined to be used for question number
 let qNumber = 0
 
+//array of questions
+var qList = [
+  {
+    question: "What can be used to declare a variable in JavaScript?",
+    answer: "D",
+    choiceA: "A) let",
+    choiceB: "B) var",
+    choiceC: "C) const",
+    choiceD: "D) All of the above"
+  },
+  {
+    question: "What is the correct syntax for writing a message to the console?",
+    answer: "B",
+    choiceA: "A) log.console()",
+    choiceB: "B) console.log()",
+    choiceC: "C) console.write()",
+    choiceD: "D) write.console()"
+  },
+  {
+    question: "",
+    answer: "",
+    choiceA: "A) ",
+    choiceB: "B) ",
+    choiceC: "C) ",
+    choiceD: "D) "
+  },
+];
+
 // if starBtn button clicked then quiz starts
 start.addEventListener('click', startQuiz)
+
+//function to start timer
+function startTime() {
+  var timerInterval = setInterval(function() {
+    timeLeft.textContent = secondsLeft;
+    secondsLeft--;
+
+    if(secondsLeft === 0) {
+      alert('Game Over, you ran out of time.')
+      location.reload();
+    }
+  }, 1000);
+}
 
 //function to start quiz
 function startQuiz() {
@@ -45,6 +69,7 @@ function startQuiz() {
     startMenu.style.display = "none";
     quiz.style.display = "block";
     generateQuestion();
+    startTime();
 }
 
 //function to generate question
@@ -65,8 +90,7 @@ function choose(choice) {
     qNumber++;
     generateQuestion();
   } else {
-    //reduce time
-    console.log('time penalty');
+    secondsLeft = secondsLeft - 5;
   }
 }
 
