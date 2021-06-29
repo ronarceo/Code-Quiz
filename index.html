@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
+
     <!-- Rules -->
     <div class="rules">
         <h1>Code Quiz Rules</h1>
@@ -20,11 +21,13 @@
             <li>The remaining time is your final score which you can choose to record with your initials.</li>
         </ul>
     </div>
+
     <!-- start quiz and view highscores buttons -->
     <div class="startMenu">
         <button id="startBtn">Start Quiz</button>
         <button id="scoresBtn">View Highscores</button>
     </div>
+    
     <!-- Quiz timer, questions, and options -->
     <div class="quiz">
         <div class="timer">
@@ -40,6 +43,21 @@
             <div class="choice" id="C" onclick="choose('C')"></div>
             <div class="choice" id="D" onclick="choose('D')"></div>
         </div>
+    </div>
+
+    <!-- Displays highscores-->
+    <div class="scoreList">
+        <h1>Highscores</h1>
+        <div class="highScores">
+            Initials: <span id="initials"></span> Score: <span id="score"></span>
+        </div>           
+    </div>
+
+    <div class="scoreMenu">
+        <button id="clearBtn">Clear Scores</button>
+        <button id="rulesBtn">View Rules</button>
+    </div>
+
     <!-- link to JavaScript -->
     <script src="assets/script.js"></script>
 </body>

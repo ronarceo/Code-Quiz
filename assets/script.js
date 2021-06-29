@@ -2,7 +2,7 @@
 let rules = document.querySelector(".rules");
 let startMenu = document.querySelector(".startMenu");
 let start = document.getElementById("startBtn");
-let scores = document.getElementById("scoresBtn");
+let viewScores = document.getElementById("scoresBtn");
 let quiz = document.querySelector(".quiz");
 let question = document.querySelector(".question");
 let choices = document.querySelector(".choices");
@@ -11,6 +11,12 @@ let choiceB = document.getElementById("B");
 let choiceC = document.getElementById("C");
 let choiceD = document.getElementById("D");
 let timeLeft = document.querySelector("#timeLeft");
+let scoreList = document.querySelector(".scoreList");
+let scoreMenu = document.querySelector(".scoreMenu");
+let clearScores = document.getElementById("clearBtn");
+let viewRules = document.getElementById("rulesBtn");
+let initials = document.getElementById("initials");
+let score = document.getElementById("score");
 
 //variable defined for starting number seconds for the quiz
 let secondsLeft = 100;
@@ -20,6 +26,15 @@ let qNumber = 0;
 
 // if starBtn button clicked then quiz starts
 start.addEventListener('click', startQuiz)
+
+//function to start quiz
+function startQuiz() {
+  rules.style.display = "none";
+  startMenu.style.display = "none";
+  quiz.style.display = "block";
+  startTime();
+  generateQuestion();
+}
 
 //function to start timer
 let timerInterval;
@@ -38,15 +53,16 @@ function startTime() {
 //function to stop timer once all questions answered
 function stopTime() {
   clearInterval(timerInterval);
-}
+  var record = confirm('Do you want to save your score?');
 
-//function to start quiz
-function startQuiz() {
-    rules.style.display = "none";
-    startMenu.style.display = "none";
-    quiz.style.display = "block";
-    startTime();
-    generateQuestion();
+  if (record) {
+    localStorage.setItem('score', secondsLeft);
+    var initials = prompt('Enter your initials.');
+    localStorage.setItem('initials', initials);
+    location.reload();
+  } else {
+    location.reload();
+  }
 }
 
 //function to generate question
@@ -75,10 +91,27 @@ function choose(choice) {
 }
 
 // if scoresBtn button clicked then shows lists of highscores
-scores.addEventListener('click', function(){
-    console.log('Highscores');
+viewScores.addEventListener('click', function(){
     rules.style.display = "none";
     startMenu.style.display = "none";
+    scoreList.style.display = "block";
+    scoreMenu.style.display = "block";
+    initials.innerHTML = localStorage.getItem('initials');
+    score.innerHTML = localStorage.getItem('score');
+})
+
+// if clearBtn button clicked then deletes all highscores
+clearScores.addEventListener('click', function(){
+  localStorage.removeItem('score');
+  localStorage.removeItem('initials');
+})
+
+// if rulesBtn button clicked then returns to rules and start menu
+viewRules.addEventListener('click', function(){
+    rules.style.display = "block";
+    startMenu.style.display = "block";
+    scoreList.style.display = "none";
+    scoreMenu.style.display = "none";
 })
 
 //array of questions
