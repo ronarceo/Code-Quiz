@@ -1,5 +1,7 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: black;
+    color: white;
 }
 
 body {
@@ -17,8 +19,39 @@ h1 {
     text-align: center;
 }
 
+.rules ul {
+    border: purple 5px double;
+}
+
+.rules li {
+    margin: 2px;
+    padding: 2px;
+    max-width: 800px;
+}
+
+button {
+    background-color: purple;
+    border: violet 5px outset;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.timer {
+    text-align: center;
+}
+
 .quiz {
     display: none;
+    max-width: 600px;
+    border: purple 5px double;
+}
+
+.quiz div {
+    margin: 5px;
+    padding: 5px;
 }
 
 .scoreList {
@@ -27,4 +60,9 @@ h1 {
 
 .scoreMenu {
     display: none;
+}
+
+.choice:hover {
+    color: yellow;
+    cursor: pointer;
 }

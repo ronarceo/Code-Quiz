@@ -104,6 +104,8 @@ viewScores.addEventListener('click', function(){
 clearScores.addEventListener('click', function(){
   localStorage.removeItem('score');
   localStorage.removeItem('initials');
+  initials.innerHTML = '';
+  score.innerHTML = '';
 })
 
 // if rulesBtn button clicked then returns to rules and start menu
