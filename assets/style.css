@@ -54,6 +54,10 @@ button {
     padding: 5px;
 }
 
+.timer {
+    border: violet 3px solid;
+}
+
 .scoreList {
     display: none;
 }
